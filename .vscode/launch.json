@@ -1,0 +1,36 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "staging",
+            "request": "launch",
+            "type": "dart",
+            "args": [
+                "--flavor",
+                "staging"
+            ],
+            "toolArgs": [
+                "--dart-define",
+                "env=staging",
+            ],
+            "program": "lib/main.dart"
+        },
+        {
+            "name": "production",
+            "request": "launch",
+            "type": "dart",
+            "args": [
+                "--flavor",
+                "production"
+            ],
+            "toolArgs": [
+                "--dart-define",
+                "env=production",
+            ],
+            "program": "lib/main.dart"
+        },
+    ]
+}
