@@ -43,15 +43,15 @@ class AppRouter extends _$AppRouter {
               page: SettingRoute.page,
               path: Screen.kSetting,
             ),
-            AutoRoute(
-              page: PhoneRoute.page,
-              path: Screen.kPhone,
-            ),
           ],
         ),
         AutoRoute(
           page: NotFoundRoute.page,
           path: Screen.kNotFoundScreen,
+        ),
+        AutoRoute(
+          page: PhoneRoute.page,
+          path: Screen.kPhone,
         ),
         RedirectRoute(
           path: '*',

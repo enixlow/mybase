@@ -1,11 +1,12 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:my_base/core/bloc/auth/auth_state.dart';
+import 'package:my_base/core/const/enum.dart';
 import 'package:my_base/core/di/locator.dart';
 import 'package:my_base/core/router/app_router.dart';
 import 'package:my_base/core/bloc/app/app_bloc.dart';
 import 'package:my_base/core/bloc/auth/auth_bloc.dart';
-import 'package:my_base/core/di/locator.dart';
-import 'package:my_base/core/router/app_router.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -57,18 +58,18 @@ class _AppViewState extends State<AppView> with WidgetsBindingObserver {
       ],
       child: MaterialApp.router(
         routerConfig: _appRouter.config(),
-        // builder: (ctx, child) {
-        //   return BlocListener<AuthBloc, AuthState>(
-        //     listener: (BuildContext context, AuthState state) {
-        //       if (state.status == AuthStatus.authenticated) {
-        //         ctx.router.push(const DashboardRoute());
-        //       } else if (state.status == AuthStatus.unauthenticated) {
-        //         ctx.router.push(const LoginRoute());
-        //       }
-        //     },
-        //     child: child
-        //   );
-        // },
+        builder: (ctx, child) {
+          return BlocListener<AuthBloc, AuthState>(
+            listener: (BuildContext context, AuthState state) {
+              if (state.status == AuthStatus.authenticated) {
+                ctx.router.replaceAll([const DashboardRoute()]);
+              } else if (state.status == AuthStatus.unauthenticated) {
+                ctx.router.replaceAll([const LoginRoute()]);
+              }
+            },
+            child: child
+          );
+        },
       ),
     );
   }
