@@ -1,4 +1,3 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_base/core/bloc/auth/auth_state.dart';
@@ -62,10 +61,12 @@ class _AppViewState extends State<AppView> with WidgetsBindingObserver {
           return BlocListener<AuthBloc, AuthState>(
             listener: (BuildContext context, AuthState state) {
               if (state.status == AuthStatus.authenticated) {
-                ctx.router.replaceAll([const DashboardRoute()]);
+                _appRouter.replaceAll([const DashboardRoute()]);
               } else if (state.status == AuthStatus.unauthenticated) {
-                ctx.router.replaceAll([const LoginRoute()]);
+                _appRouter.replaceAll([const LoginRoute()]);
               }
+
+              Future.delayed(const Duration(seconds: 1)).then((value) => print(_appRouter.stack));
             },
             child: child
           );

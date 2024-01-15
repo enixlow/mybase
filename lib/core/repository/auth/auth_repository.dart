@@ -7,7 +7,7 @@ class AuthRepository implements IAuthRepository {
   AuthRepository();
 
   final _controller = StreamController<AuthStatus>();
-  
+
   @override
   Stream<AuthStatus> get status async* {
     yield* _controller.stream;
@@ -15,6 +15,6 @@ class AuthRepository implements IAuthRepository {
 
   @override
   Future<bool> login() async {
-    return Future.delayed(const Duration(seconds: 5)).then((value) => true);
+    return Future.delayed(const Duration(seconds: 1)).then((value) => true);
   }
 }

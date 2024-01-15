@@ -1,6 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:my_base/core/router/app_router.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:my_base/core/bloc/auth/auth_bloc.dart';
+import 'package:my_base/core/bloc/auth/auth_event.dart';
 
 @RoutePage()
 class LoginScreen extends StatelessWidget {
@@ -24,7 +26,7 @@ class LoginScreen extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => context.router.push(const DashboardRoute()),
+        onPressed: () => context.read<AuthBloc>().add(const AuthLogin()),
         tooltip: 'login',
         child: const Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
